@@ -2,6 +2,7 @@
     background: transparent;
 }
 
-#footer-mrap {
+#footer-wrap,
+#footer-wrap a {
     color: #0d0d0d;
 }
