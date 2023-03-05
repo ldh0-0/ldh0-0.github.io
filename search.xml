@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>whatweb</title>
+      <link href="/2023/03/05/whatweb/"/>
+      <url>/2023/03/05/whatweb/</url>
+      
+        <content type="html"><![CDATA[<h2 id="whatweb简介"><a href="#whatweb简介" class="headerlink" title="whatweb简介"></a>whatweb简介</h2><blockquote><p>whatweb 是kali中网站指纹识别的工具，使用Ruby语言开发。whatweb可识别web技术，包括内容管理系统(CMS)、博客平台、统计/分析包、JavaScript库，Web服务器和嵌入式设备等。它有超过900个插件，每个插件都能识别不同的东西。Whatweb还可以识别版本号，电子邮件地址、账户ID、Web框架模块，SQL错误等。</p></blockquote><p>用法： <strong>weatweb 域名</strong></p><ul><li>i 指定要扫描的文件</li><li>v 详细显示扫描的结果</li><li>a 指定运行级别</li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>python自动化运维</title>
       <link href="/2023/02/27/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
       <url>/2023/02/27/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/</url>
