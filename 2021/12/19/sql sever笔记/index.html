@@ -1,0 +1,557 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>sql笔记 | ldh0-0</title><meta name="keywords" content="sql"><meta name="author" content="ldh0-0"><meta name="copyright" content="ldh0-0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="SQL 数据定义SQL概述 1970年，美国IBM研究中心的E.F.Codd连续发表多篇论文，提出关系模型。1972年，最初的SQL原型SQUARE出现，作为IBM公司San Jose研究室的SYSTEM R的一部分。1974年，Boyce和Chamberlin把SQUARE修改为SEQUEL语言。后来SEQUEL简称为SQL (Structured QueryLanguage )，即“结构化查询">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql笔记">
+<meta property="og:url" content="http://ldh0-0.github.io/2021/12/19/sql%20sever%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="ldh0-0">
+<meta property="og:description" content="SQL 数据定义SQL概述 1970年，美国IBM研究中心的E.F.Codd连续发表多篇论文，提出关系模型。1972年，最初的SQL原型SQUARE出现，作为IBM公司San Jose研究室的SYSTEM R的一部分。1974年，Boyce和Chamberlin把SQUARE修改为SEQUEL语言。后来SEQUEL简称为SQL (Structured QueryLanguage )，即“结构化查询">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2022/06/05/629c65942cd1c.png">
+<meta property="article:published_time" content="2021-12-19T04:36:10.000Z">
+<meta property="article:modified_time" content="2023-03-06T08:46:56.552Z">
+<meta property="article:author" content="ldh0-0">
+<meta property="article:tag" content="sql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2022/06/05/629c65942cd1c.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/OIP-C.jpg"><link rel="canonical" href="http://ldh0-0.github.io/2021/12/19/sql%20sever%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'sql笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-06 16:46:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-video"></i><span> 番剧</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接们</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://bu.dusays.com/2022/06/05/629c65942cd1c.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ldh0-0</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-video"></i><span> 番剧</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接们</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">sql笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-19T04:36:10.000Z" title="发表于 2021-12-19 12:36:10">2021-12-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-06T08:46:56.552Z" title="更新于 2023-03-06 16:46:56">2023-03-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="sql笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="SQL-数据定义"><a href="#SQL-数据定义" class="headerlink" title="SQL 数据定义"></a>SQL 数据定义</h2><h3 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h3><!-- wp:quote {"className":"is-style-default"} -->
+<blockquote><p>1970年，美国IBM研究中心的E.F.Codd连续发表多篇论文，提出关系模型。</p><p>1972年，最初的SQL原型SQUARE出现，作为IBM公司San Jose研究室的SYSTEM R的一部分。</p><p>1974年，Boyce和Chamberlin把SQUARE修改为SEQUEL语言。后来SEQUEL简称为SQL (Structured QueryLanguage )，即“结构化查询语言”。</p><p>1986年10月， ANSI公布最早的SQL标准，并将其作为关系数据库管理系统的标准语言。</p><p>1987年6月，ISO采纳SQL为国际标准</p></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul><li>功能一体化</li><li>高度非过程化</li><li>面向集合的操作方式</li><li>两种使用方式：命令行和嵌入到其他宿主语言（如Java等）方式</li><li>简洁易学</li><li><strong>SQL Server</strong>不区分大小写</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="数据定义语言"><a href="#数据定义语言" class="headerlink" title="数据定义语言"></a>数据定义语言</h3><!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>ON关键字表示数据库是根据后面的参数来创建的；</li><li>LOG ON 子句用于指定该数据库的事务日志文件；</li><li>NAME用于指定数据库文件的逻辑文件名；</li><li>FILNAME用于指定数据库文件的存放位置及在磁盘上的文件名；</li><li>SIZE用于指定数据库文件的初始大小，可以加上MB或者KB, 默认为MB; </li><li>MAXSIZE用于指定数据库文件的最大大小，可以加上MB或者KB,默认为MB。省略此项表示最大大小无限制； </li><li>FILEGROWTH用于指定数据库文件的增加量，可以加上MB或KB或%, 默认为MB。省略此项表示不自动增长。</li></ul>
+<!-- /wp:list -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> database 数据库名称      </span><br><span class="line"><span class="keyword">on</span></span><br><span class="line">(</span><br><span class="line">    name <span class="operator">=</span> 数据文件名,</span><br><span class="line">    filename <span class="operator">=</span> <span class="string">&#x27;路径+数据文件名&#x27;</span>,</span><br><span class="line">    size <span class="operator">=</span> 数据文件初始大小,</span><br><span class="line">    maxsize <span class="operator">=</span> 数据文件最大容量,</span><br><span class="line">    filegrowth <span class="operator">=</span> 数据文件自动增长容量</span><br><span class="line">)</span><br><span class="line">log <span class="keyword">on</span></span><br><span class="line">(</span><br><span class="line">    name <span class="operator">=</span> 日志文件逻辑名称,</span><br><span class="line">    filename <span class="operator">=</span> <span class="string">&#x27;路径+日志文件名&#x27;</span>,</span><br><span class="line">    size <span class="operator">=</span> 日志文件初始大小,</span><br><span class="line">    maxsize <span class="operator">=</span> 日志文件最大容量,</span><br><span class="line">    filegrowth <span class="operator">=</span> 日志文件自动增长容量</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line"><span class="keyword">create</span> database Study</span><br><span class="line"><span class="keyword">on</span></span><br><span class="line">(</span><br><span class="line">	name <span class="operator">=</span> Study,</span><br><span class="line">	filename <span class="operator">=</span> <span class="string">&#x27;D:\SQL Server\Study.mdf&#x27;</span>,</span><br><span class="line">	size <span class="operator">=</span> <span class="number">5</span>,</span><br><span class="line">	maxsize <span class="operator">=</span> <span class="number">50</span>,</span><br><span class="line">	filegrowth <span class="operator">=</span> <span class="number">5</span></span><br><span class="line">)</span><br><span class="line">log <span class="keyword">on</span></span><br><span class="line">(</span><br><span class="line">	name <span class="operator">=</span> Study_log,</span><br><span class="line">	filename <span class="operator">=</span> <span class="string">&#x27;D:\SQL Server\Study.ldf&#x27;</span>,</span><br><span class="line">	size <span class="operator">=</span> <span class="number">5</span>,</span><br><span class="line">	maxsize <span class="operator">=</span> <span class="number">50</span>,</span><br><span class="line">	filegrowth <span class="operator">=</span> <span class="number">5</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<!-- wp:paragraph {"fontSize":"medium"} -->
+<p class="has-medium-font-size">创建一个数据库会至少产生两个文件：数据文件和事务日志文件其中，数据文件又分为主数据文件，用来存储数据库的启动信息和部分或全部数据（扩展名为.<code>mdf</code>）和次数据文件，用来存储主数据文件未存储的其他数据（扩展名为.<code>ndf</code>）。事务日志文件，保存用于恢复数据库的日志信息（扩展名为.<code>ldf</code>）。</p>
+<!-- /wp:paragraph -->
+
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/20211219125607.png"></p>
+<!-- wp:paragraph {"fontSize":"medium"} -->
+<p class="has-medium-font-size">初学者可以简单的用  create database 数据库名称  来创建，系统会按照默认属性来创建数据库。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>语法：DROP DATABASE 数据库名。</li><li>被删除的数据库不能是当前正在使用的数据库。</li><li>使用数据库删除语句可以一次删除多个数据库。</li></ul>
+<!-- /wp:list -->
+
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/20211219125746.png"></p>
+<!-- wp:heading {"level":3} -->
+<h3 id="SQL-中的数据类型"><a href="#SQL-中的数据类型" class="headerlink" title="SQL 中的数据类型"></a>SQL 中的数据类型</h3><!-- /wp:heading -->
+
+<!-- wp:table {"className":"is-style-regular"} -->
+<figure class="wp-block-table is-style-regular"><table><tbody><tr><td class="has-text-align-center" data-align="center">SQL Server</td><td class="has-text-align-center" data-align="center">SQL99</td><td class="has-text-align-center" data-align="center">说明</td></tr><tr><td class="has-text-align-center" data-align="center">Bigint</td><td class="has-text-align-center" data-align="center"></td><td class="has-text-align-center" data-align="center">8字节，存储从–2 ^63(–9223372036854775808)<br>到263-1(9223372036854775807) 范围的整数</td></tr><tr><td class="has-text-align-center" data-align="center">Int</td><td class="has-text-align-center" data-align="center">Integer</td><td class="has-text-align-center" data-align="center">4字节，存储从 –2^31(–2,147,483,648 ) 到2^31-1<br>( 2,147,483,647 ) 范围的整数</td></tr><tr><td class="has-text-align-center" data-align="center">Smallint</td><td class="has-text-align-center" data-align="center">Smallint</td><td class="has-text-align-center" data-align="center">2字节，存储从–2^15(–32,768 )<br> 到2^15-1 (32,767 ) 范围的整数</td></tr><tr><td class="has-text-align-center" data-align="center">Tinyint</td><td class="has-text-align-center" data-align="center"></td><td class="has-text-align-center" data-align="center">存储从 0 到 255 之间的整数</td></tr><tr><td class="has-text-align-center" data-align="center">Bit</td><td class="has-text-align-center" data-align="center">Bit</td><td class="has-text-align-center" data-align="center">存储1或0</td></tr><tr><td class="has-text-align-center" data-align="center">decimal(p,q)或<br>numerice(p,q)</td><td class="has-text-align-center" data-align="center">decimal</td><td class="has-text-align-center" data-align="center">定点精度和小数位数。使用最大精度时，<br>有效值从 –10^38 +1 到10^38 -1。<br>其中，p为精度，指定小数点左边和右<br>边可以存储的十进或制数字的最大个数。q为小数位数，<br>指定小数点右边可以存储的十进<br>制数字的最大个数，0 <= q <= p。q的默认值为0</td></tr><tr><td class="has-text-align-center" data-align="center">float</td><td class="has-text-align-center" data-align="center">float</td><td class="has-text-align-center" data-align="center">8字节，存储从 –1.79E +<br>308 到 1.79E + 308 范围<br>的浮点型数</td></tr><tr><td class="has-text-align-center" data-align="center">real</td><td class="has-text-align-center" data-align="center"></td><td class="has-text-align-center" data-align="center">4字节，存储从 –3.40E +<br>38 到 3.40E + 38 范围的<br>浮点型数</td></tr><tr><td class="has-text-align-center" data-align="center">char(n)</td><td class="has-text-align-center" data-align="center">character</td><td class="has-text-align-center" data-align="center">固定长度的字符串类型，<br>n表示字符串的最大长度，<br>取值范围为1～8000</td></tr><tr><td class="has-text-align-center" data-align="center">varchar(n)</td><td class="has-text-align-center" data-align="center"><br>character<br>varying</td><td class="has-text-align-center" data-align="center">可变长度的字符串类型，<br> n表示字符串的最大长度，<br>取值范围为1～8000</td></tr><tr><td class="has-text-align-center" data-align="center">text</td><td class="has-text-align-center" data-align="center"></td><td class="has-text-align-center" data-align="center">可存储2^31-1(2,147,483,647)<br>个字符的大文本</td></tr><tr><td class="has-text-align-center" data-align="center">nchar(n)</td><td class="has-text-align-center" data-align="center">national<br>characte</td><td class="has-text-align-center" data-align="center">固定长度的 Unicode 数据，<br>表示字符串的最大长度，取值<br>范围为1～4000</td></tr><tr><td class="has-text-align-center" data-align="center">nvarchar(n)</td><td class="has-text-align-center" data-align="center">national<br>character<br>varying</td><td class="has-text-align-center" data-align="center">可变长度的 Unicode 数据，n<br> 表示字符串的最大长度，取值<br> 范围为1～4000</td></tr><tr><td class="has-text-align-center" data-align="center">ntext</td><td class="has-text-align-center" data-align="center"></td><td class="has-text-align-center" data-align="center">最多可存储2^30-1(1,073,741,823) 个字符的统<br>一字符编码文本</td></tr><tr><td class="has-text-align-center" data-align="center">binary(n)</td><td class="has-text-align-center" data-align="center">binary</td><td class="has-text-align-center" data-align="center">固定长度的二进制字符数据，n<br>表示最大长度，取值范围为1~8000</td></tr><tr><td class="has-text-align-center" data-align="center">varbinary(n)</td><td class="has-text-align-center" data-align="center">binary<br>varying</td><td class="has-text-align-center" data-align="center">可变长度的二进制字符数据，n<br>的取值范围为1～8000</td></tr><tr><td class="has-text-align-center" data-align="center">image</td><td class="has-text-align-center" data-align="center"></td><td class="has-text-align-center" data-align="center">大容量的、可变长度的二进制<br>字符数据，可以存储多种格式<br>的文件，最大约为2GB</td></tr><tr><td class="has-text-align-center" data-align="center">money</td><td class="has-text-align-center" data-align="center">无类型</td><td class="has-text-align-center" data-align="center">8字节，存储的货币数据值介于–26^<br>3 (–922,337,203,685,477.5808)<br>与 2^63-1 (+922,337,203,685,477.<br>5807) 之间，精确到货币单位的千<br>分之十。最多可以包含19位数字</td></tr><tr><td class="has-text-align-center" data-align="center">Smallmoney</td><td class="has-text-align-center" data-align="center">无类型</td><td class="has-text-align-center" data-align="center">4字节，存储的货币数据值介于<br>–214,748.3648 与 +214,748.3647<br>之间，精确到货币单位的千分之十</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph {"fontSize":"medium"} -->
+<p class="has-medium-font-size">SQL Server的日期时间数据类型是合起来存储的，但SQL99是将其分开的日期是Date类型时间是Time类型。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="数据完整性约束"><a href="#数据完整性约束" class="headerlink" title="数据完整性约束"></a>数据完整性约束</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>主码约束：PRIMARY KEY      primary主要的</li><li>非空约束：NOT NULL</li><li>检查约束：CHECK（条件表达式）</li><li>唯一约束：UNIQUE</li><li>默认值约束：DEFAULT 默认值</li><li>外码约束：FOREIGN KEY(外码列) REFERENCES 表名（主码列）</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"fontSize":"medium"} -->
+<p class="has-medium-font-size"><span class="has-inline-color has-vivid-red-color">请注意，每个表可以有多个 UNIQUE 约束，但是每个表只能有一个 PRIMARY KEY 约束。</span></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="外码约束"><a href="#外码约束" class="headerlink" title="外码约束"></a>外码约束</h3><!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"medium"} -->
+<p class="has-medium-font-size">用以建立列之间的参照关系（列可以来自不同的表）。使一个列的取值受另一个列的约束</p>
+<!-- /wp:paragraph -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Book(</span><br><span class="line">book_ID <span class="type">CHAR</span>(<span class="number">10</span>)	<span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">name <span class="type">VARCHAR</span>(<span class="number">30</span>)	<span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">author <span class="type">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">publish <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">price <span class="type">DECIMAL</span>(<span class="number">6</span>,<span class="number">2</span>)	<span class="keyword">CHECK</span>(price<span class="operator">&gt;</span><span class="number">0</span>),</span><br><span class="line">Classify <span class="type">varchar</span>(<span class="number">20</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Reader(</span><br><span class="line">Reader_ID <span class="type">CHAR</span>(<span class="number">10</span>) <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">name <span class="type">VARCHAR</span>(<span class="number">8</span>),</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">2</span>),</span><br><span class="line">birthdate DATETIME</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Borrow(</span><br><span class="line">book_ID <span class="type">CHAR</span>(<span class="number">10</span>) <span class="keyword">REFERENCES</span> Book(book_ID),</span><br><span class="line">Reader_ID <span class="type">CHAR</span>(<span class="number">10</span>),</span><br><span class="line">Borrowdate DATETIME,</span><br><span class="line">ReturnDate DATETIME,</span><br><span class="line"><span class="keyword">PRIMARY</span> KEY(book_ID,Reader_ID),<span class="comment">--这里是用一个约束来同时约束两个列</span></span><br><span class="line"><span class="keyword">FOREIGN</span> KEY(Reader_ID) <span class="keyword">REFERENCES</span> Reader(Reader_ID)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading {"level":3} -->
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>语法：DROP TABLE 表名</li><li>注意：有外码参照的表只能在外码所在表删除后才可以被删除。</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="修改表的列"><a href="#修改表的列" class="headerlink" title="修改表的列"></a>修改表的列</h3><!-- /wp:heading -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名</span><br><span class="line"><span class="comment">--修改列定义</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> 列名 新数据类型</span><br><span class="line"><span class="comment">--添加新列</span></span><br><span class="line"><span class="keyword">ADD</span> 列名 数据类型 约束</span><br><span class="line"><span class="comment">--删除列</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">COLUMN</span> 列名</span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading {"level":3} -->
+<h3 id="修改表的约束"><a href="#修改表的约束" class="headerlink" title="修改表的约束"></a>修改表的约束</h3><!-- /wp:heading -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名</span><br><span class="line"><span class="comment">--给表添加新约束</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 约束名 约束</span><br><span class="line"><span class="comment">--删除表中的约束</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> 约束名</span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading -->
+<h2 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h2><!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>SELECT 查询哪些列</li><li>FROM 来自于哪些表</li><li>WHERE 筛选的条件</li><li>GROUP BY 根据那些列分组</li><li>HAVING 分组后的筛选条件</li><li>ORDER BY 根据那些列排序</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>COUNT(*) 统计表中元组/记录个数</li><li>COUNT (DISTINCT 列名) 统计本列（非空的）列值个数</li><li>SUM(列名) 计算列值总和（必须是数值型列）</li><li>AVG(列名) 计算列值平均值（必须是数值型列）</li><li>MAX(列名) 求列最大值</li><li>MIN(列名）求列最小值</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><tbody><tr><td><strong>查询条件</strong></td><td><strong>谓&nbsp;&nbsp;&nbsp;&nbsp; 词</strong></td></tr><tr><td>比较（比较运算符）</td><td>=, >, >=, <, <=, <>（或!=） NOT+上述比较运算符</td></tr><tr><td>确定范围</td><td>BETWEEN&nbsp; AND, NOT&nbsp; BETWEEN AND</td></tr><tr><td>确定集合</td><td>IN, NOT&nbsp; IN</td></tr><tr><td>字符匹配</td><td>LIKE, NOT&nbsp; LIKE</td></tr><tr><td>空值</td><td>IS NULL, IS NOT NULL</td></tr><tr><td>多重条件（逻辑谓词</td><td>AND, OR</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="格式应用"><a href="#格式应用" class="headerlink" title="格式应用"></a>格式应用</h3><!-- /wp:heading -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> book <span class="comment">--通配符*匹配表中所有的列</span></span><br><span class="line"><span class="keyword">select</span> book_ID, name, author, classify <span class="keyword">from</span> book <span class="keyword">where</span> classify <span class="operator">=</span> <span class="string">&#x27;计算机类&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> sex <span class="keyword">from</span> reader</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">all</span> sex <span class="keyword">from</span> reader</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> sex <span class="keyword">from</span> reader <span class="comment">--去除重复元素</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> book_ID, name, author, price<span class="operator">*</span><span class="number">0.9</span> <span class="keyword">from</span> book</span><br><span class="line"><span class="keyword">select</span> book_ID, name, author, price<span class="operator">*</span><span class="number">0.9</span> <span class="keyword">as</span> newprice <span class="keyword">from</span> book</span><br><span class="line"><span class="keyword">select</span> book_ID, name, author, price<span class="operator">*</span><span class="number">0.9</span>  newprice <span class="keyword">from</span> book</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询图书价格在30到50之间的图书</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> book <span class="keyword">where</span> price <span class="keyword">between</span> <span class="number">30</span> <span class="keyword">and</span> <span class="number">50</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> book <span class="keyword">where</span> price <span class="operator">&gt;=</span> <span class="number">30</span> <span class="keyword">and</span> price <span class="operator">&lt;=</span> <span class="number">50</span></span><br><span class="line"><span class="comment">--查询“清华大学出版社,机械工业出版社,高等教育出版社”出版图书</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> Book</span><br><span class="line"><span class="keyword">where</span> publish <span class="keyword">in</span>(<span class="string">&#x27;清华大学出版社&#x27;</span>,<span class="string">&#x27;机械工业出版社&#x27;</span>,<span class="string">&#x27;高等教育出版社&#x27;</span>)</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> Book</span><br><span class="line"><span class="keyword">where</span> publish <span class="operator">=</span> <span class="string">&#x27;清华大学出版社&#x27;</span> <span class="keyword">or</span> publish <span class="operator">=</span> <span class="string">&#x27;机械工业出版社&#x27;</span> <span class="keyword">or</span> </span><br><span class="line">publish <span class="operator">=</span> <span class="string">&#x27;高等教育出版社&#x27;</span></span><br><span class="line"><span class="comment">--查询名字是两个字的姓“王”的读者的信息</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> reader <span class="keyword">where</span> name <span class="keyword">like</span> <span class="string">&#x27;王%&#x27;</span> <span class="comment">--%匹配0个或多个</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> reader <span class="keyword">where</span> name <span class="keyword">like</span> <span class="string">&#x27;王_&#x27;</span> <span class="comment">--_匹配一个</span></span><br><span class="line"><span class="comment">--查询名字中带有“晓”字的人的信息</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> reader <span class="keyword">where</span> name <span class="keyword">like</span> <span class="string">&#x27;%晓%&#x27;</span></span><br><span class="line"><span class="comment">--查询所以不姓张的读者信息</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> reader <span class="keyword">where</span> name <span class="keyword">not</span> <span class="keyword">like</span> <span class="string">&#x27;张%&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> reader <span class="keyword">where</span> sex <span class="keyword">is</span> <span class="keyword">null</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> reader <span class="keyword">where</span> sex <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--查找出生日期中1977年出生的</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> reader <span class="keyword">where</span> <span class="keyword">year</span>(birthdate) <span class="operator">=</span> <span class="number">1977</span> </span><br><span class="line"><span class="comment">--按照出生日期升序排</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> reader <span class="keyword">order</span> <span class="keyword">by</span> birthdate <span class="keyword">asc</span> <span class="comment">--默认不填是asc升序</span></span><br><span class="line"> <span class="comment">--按照出生日期降序排</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> reader <span class="keyword">order</span> <span class="keyword">by</span> birthdate <span class="keyword">desc</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) 总行数 <span class="keyword">from</span> book <span class="comment">--统计book表中行数</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(name) <span class="keyword">from</span> book  <span class="comment">--统计book表中name列中不为空的行数</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> sex) <span class="keyword">from</span> reader</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">AVG</span>(price) <span class="keyword">as</span> 平均价格 <span class="keyword">from</span> book</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(price) <span class="keyword">as</span> 最高价格 <span class="keyword">from</span> book</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> publish, <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> book <span class="keyword">group</span> <span class="keyword">by</span> publish</span><br><span class="line"><span class="keyword">select</span> publish, <span class="built_in">count</span>(<span class="operator">*</span>), <span class="built_in">avg</span>(price) <span class="keyword">from</span> book <span class="keyword">group</span> <span class="keyword">by</span> publish <span class="keyword">having</span> <span class="built_in">avg</span>(price)<span class="operator">&gt;=</span><span class="number">23</span></span><br><span class="line"><span class="keyword">select</span> name <span class="keyword">from</span> book <span class="keyword">where</span> price<span class="operator">=</span>(<span class="keyword">select</span> <span class="built_in">max</span>(price) <span class="keyword">from</span> book) <span class="comment">--找到最贵的书的名字</span></span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading -->
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="嵌套子查询"><a href="#嵌套子查询" class="headerlink" title="嵌套子查询"></a>嵌套子查询</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>在SQL语言中，一个SELECT-FROM语句称为一个查询块。</li><li>如果一个SELECT语句嵌套在另一个SLELECT、INSERT、UPDATE或DELETE语句中，则称之为子查询或内层查询；而包含子查询的语句则称为主查询或外层查询。</li><li>执行顺序：先内层后外层；先子查询后主查询</li></ul>
+<!-- /wp:list -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--查询售价最高的图书的名称</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">From</span> book <span class="keyword">WHERE</span></span><br><span class="line">price<span class="operator">=</span>(<span class="keyword">SELECT</span> <span class="built_in">MAX</span>(price) <span class="keyword">from</span> book)</span><br></pre></td></tr></table></figure>
+
+<!-- wp:list -->
+<ul><li>各种子查询</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><tbody><tr><td></td><td><strong>子查询返回结果只有一个值</strong></td><td><strong>子查询返回多个值</strong></td></tr><tr><td><strong>等值比较</strong></td><td><strong>= </strong><strong>、</strong><strong><></strong><strong>号判断</strong> <strong>可以用</strong><strong>in</strong><strong>代替</strong></td><td><strong>&nbsp;</strong><strong>采用</strong><strong> </strong><strong>in </strong><strong>&nbsp;</strong><strong>或</strong><strong>not&nbsp; in</strong><strong>进行判断</strong></td></tr><tr><td><strong>不等比较</strong></td><td><strong>>, <, </strong><strong>>=, <=</strong></td><td><strong>>, <, </strong><strong>>=, <=</strong> <strong>All</strong> <strong>some</strong></td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--查询与“C语言”在同一出版社的图书信息</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Book <span class="keyword">WHERE</span> publish <span class="keyword">IN</span> (<span class="keyword">SELECT</span> publish <span class="keyword">FROM</span> Book <span class="keyword">WHERE</span> name<span class="operator">=</span>’C语言’)</span><br><span class="line"><span class="comment">--查询除最低价格外的所有图书</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Book <span class="keyword">WHERE</span> price<span class="operator">&gt;</span><span class="keyword">SOME</span>(<span class="keyword">SELECT</span> price <span class="keyword">FROM</span> Book)</span><br><span class="line"><span class="comment">--查询价格最低的图书信息</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Book <span class="keyword">WHERE</span> <span class="keyword">NOT</span>( price<span class="operator">&gt;</span><span class="keyword">SOME</span>(<span class="keyword">SELECT</span> price <span class="keyword">FROM</span> Book))</span><br><span class="line"><span class="comment">--查询书价最高的图书的信息</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Book <span class="keyword">WHERE</span> price <span class="operator">&gt;=</span><span class="keyword">ALL</span>(<span class="keyword">SELECT</span> price <span class="keyword">FROM</span> Book)</span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading {"level":3} -->
+<h3 id="多表连接查询"><a href="#多表连接查询" class="headerlink" title="多表连接查询"></a>多表连接查询</h3><!-- /wp:heading -->
+
+<!-- wp:heading {"level":3,"fontSize":"medium"} -->
+<h3 id="表连接的语法格式"><a href="#表连接的语法格式" class="headerlink" title="表连接的语法格式"></a>表连接的语法格式</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li><span class="has-inline-color has-vivid-red-color">FROM 表1 [inner|outer] JOIN 表2 ON <连接条件></span></li><li>其中表1，表2是需要连接的两张表， JOIN 表示连接，inner表示内连接，outer表示外连接，缺省情况就是内连接。ON后面接<连接条件>。</li></ul>
+<!-- /wp:list -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--查询2005年1月20日借书的读者姓名和所借图书的编号</span></span><br><span class="line"><span class="keyword">SELECT</span>  Name, book_ID </span><br><span class="line"><span class="keyword">FROM</span> Reader <span class="keyword">JOIN</span> Borrow <span class="keyword">ON</span> Reader.reader_ID <span class="operator">=</span>Borrow.reader_ID</span><br><span class="line"><span class="keyword">WHERE</span> borrowdate<span class="operator">=</span> <span class="string">&#x27;2005-1-20&#x27;</span></span><br><span class="line"><span class="comment">--查询2005年6月7日借阅图书的读者姓名和所借图书名称</span></span><br><span class="line"><span class="keyword">SELECT</span> Reader.name, Book.name <span class="keyword">FROM</span> Book <span class="keyword">JOIN</span> Borrow <span class="keyword">ON</span> Book.book_ID<span class="operator">=</span>Borrow.Book_ID <span class="keyword">JOIN</span> Reader <span class="keyword">ON</span> Reader.reader_ID<span class="operator">=</span>Borrow.reader_ID <span class="keyword">WHERE</span> borrowdate<span class="operator">=</span><span class="string">&#x27;2005-6-7&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>内连接的特点：满足连接条件的元组保留到连接的结果中，其中存在不满足连接条件的元组会被舍弃。</li></ul>
+<!-- /wp:list -->
+
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/20211219130657.png"></p>
+<!-- wp:list -->
+<ul><li><strong>表X和Y内连接结果</strong></li></ul>
+<!-- /wp:list -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a,  X.b,  Y.b,  c </span><br><span class="line"><span class="keyword">FROM</span>  X  <span class="keyword">JOIN</span>  Y  <span class="keyword">ON</span>  X.b<span class="operator">=</span>Y.b</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/20211219130709.png"></p>
+<!-- wp:heading {"level":3} -->
+<h3 id="表外连接"><a href="#表外连接" class="headerlink" title="表外连接"></a>表外连接</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>和内连接相对的就是<strong>外连接</strong>。</li><li>外连接的特点：满足连接条件的元组保留到连接的结果中，其中不满足连接条件的元组也会显示到连接结果中。</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="左外连接"><a href="#左外连接" class="headerlink" title="左外连接"></a>左外连接</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>&nbsp;left join 或 left outer join</li><li>左外连接包含left join左表所有行，如果左表中某行在右表没有匹配，则结果中对应行右表的部分全部为空(NULL).</li><li>不能说结果的行数等于左表数据的行数。当然此处查询结果的行数等于左表数据的行数，因为左右两表此时为一对一关系。</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"fontSize":"medium"} -->
+<p class="has-medium-font-size">SQL语句：select * from book left join borrow on borrow.book_ID=book.book_ID where Classify='计算机类'<br>执行结果：</p>
+<!-- /wp:paragraph -->
+
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/20211219130743.png"></p>
+<!-- wp:heading {"level":3} -->
+<h3 id="右外连接"><a href="#右外连接" class="headerlink" title="右外连接"></a>右外连接</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>right join 或 right outer join</li><li>右外连接包含right join右表所有行，如果左表中某行在右表没有匹配，则结果中对应左表的部分全部为空(NULL)。</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"fontSize":"medium"} -->
+<p class="has-medium-font-size">SQL语句：select * from borrow right join book on borrow.book_ID=book.book_ID where Classify='计算机类'<br>执行结果：</p>
+<!-- /wp:paragraph -->
+
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/20211219130814.png"></p>
+<!-- wp:heading {"level":3} -->
+<h3 id="全外连接"><a href="#全外连接" class="headerlink" title="全外连接"></a>全外连接</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>&nbsp;full join 或 full outer join</li><li>完全外连接包含full join左右两表中所有的行，如果右表中某行在左表中没有匹配，则结果中对应行右表的部分全部为空(NULL)，如果左表中某行在右表中没有匹配，则结果中对应行左表的部分全部为空(NULL)。</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"fontSize":"medium"} -->
+<p class="has-medium-font-size">SQL语句：select * from Student full join Reader on Student.sname=reader.Reader_ID where ssex='男' or sex='男'<br>执行结果：</p>
+<!-- /wp:paragraph -->
+
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/20211219130854.png"></p>
+<!-- wp:heading {"level":3} -->
+<h3 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>使用UNION语句可以合并两个或多个查询的结果。 </li><li>UNION语句用第二个查询结果合并第一个查询结果。</li><li>它不显示两个查询中的重复的行。 </li><li>如果想显示所有行（包括重复行）则可以在UNION后面添加ALL谓词。</li></ul>
+<!-- /wp:list -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Book  </span><br><span class="line"><span class="keyword">WHERE</span> publish<span class="operator">=</span>’清华大学出版社’</span><br><span class="line"><span class="keyword">UNION</span>  <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Book  <span class="keyword">WHERE</span> price<span class="operator">&lt;</span><span class="number">25</span></span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/20211219130908.png"></p>
+<!-- wp:heading -->
+<h2 id="数据操纵"><a href="#数据操纵" class="headerlink" title="数据操纵"></a>数据操纵</h2><!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>INSRET语句的基本语法：</li><li>INSERT INTO 表名 （列名列表） VALUES(值列表)</li><li>注意：列名列表 与 值列表 永远保持一致！</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>UPDATE 表名 SET 列名=值/表达式 [where 条件]</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>DELETE FROM 表名 [where 删除条件]</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="格式应用-1"><a href="#格式应用-1" class="headerlink" title="格式应用"></a>格式应用</h3><!-- /wp:heading -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--插入数据</span></span><br><span class="line"><span class="comment">--把数据“(&#x27;021B310001&#x27;,&#x27;张冬&#x27;,&#x27;男&#x27;,&#x27;1976-11-26&#x27;)”插入到Reader表中</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> reader(Reader_ID,name,sex,birthdate)</span><br><span class="line"><span class="keyword">values</span> (<span class="string">&#x27;021B310001&#x27;</span>,<span class="string">&#x27;张东&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;1976-11-26&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">--如果插入的数据和表的列以及顺序一致，可以省略列名</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> reader</span><br><span class="line"><span class="keyword">values</span> (<span class="string">&#x27;021B310001&#x27;</span>,<span class="string">&#x27;张东&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;1976-11-26&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> reader(Reader_ID,name,sex)</span><br><span class="line"><span class="keyword">values</span> (<span class="string">&#x27;021B310002&#x27;</span>,<span class="string">&#x27;牟晓光&#x27;</span>,<span class="string">&#x27;女&#x27;</span>)</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> reader</span><br><span class="line"><span class="keyword">values</span> (<span class="string">&#x27;021B310002&#x27;</span>,<span class="string">&#x27;牟晓光&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="keyword">NULL</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 清华大学出版图书表 (</span><br><span class="line">book_ID   <span class="type">CHAR</span>(<span class="number">10</span>)          <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">name      NVARCHAR(<span class="number">30</span>),</span><br><span class="line">author     NVARCHAR(<span class="number">10</span>),</span><br><span class="line">publish     NVARCHAR(<span class="number">20</span>),</span><br><span class="line">price       <span class="type">DECIMAL</span>(<span class="number">6</span>,<span class="number">2</span>)</span><br><span class="line">)</span><br><span class="line"><span class="comment">--插入多条记录时子查询的列要与插入的表的列一致</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 清华大学出版图书表</span><br><span class="line"><span class="keyword">SELECT</span> book_ID,name,author,publish,price <span class="keyword">FROM</span> Book <span class="keyword">WHERE</span> publish<span class="operator">=</span><span class="string">&#x27;清华大学出版社&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--所有图书的价格打8折</span></span><br><span class="line"><span class="keyword">update</span> book <span class="keyword">set</span> price <span class="operator">=</span> price<span class="operator">*</span><span class="number">0.8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--修改数据</span></span><br><span class="line"><span class="comment">--子查询方式：</span></span><br><span class="line"><span class="keyword">update</span> borrow <span class="keyword">set</span> Borrowdate<span class="operator">=</span><span class="string">&#x27;2005-5-1&#x27;</span></span><br><span class="line"><span class="keyword">where</span> Reader_ID <span class="keyword">in</span></span><br><span class="line">(<span class="keyword">select</span> Reader_ID <span class="keyword">from</span> reader <span class="keyword">where</span></span><br><span class="line">name<span class="operator">=</span><span class="string">&#x27;王旭&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">--多表连接方式：</span></span><br><span class="line"><span class="keyword">update</span> borrow <span class="keyword">set</span> borrowdate<span class="operator">=</span><span class="string">&#x27;2005-5-1&#x27;</span></span><br><span class="line"><span class="keyword">from</span> borrow <span class="keyword">join</span> reader <span class="keyword">on</span> </span><br><span class="line">borrow.Reader_ID <span class="operator">=</span> reader.Reader_ID <span class="keyword">where</span></span><br><span class="line">name<span class="operator">=</span><span class="string">&#x27;王旭&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--更改‘胡晓丽’借阅‘高等数学’的借阅借阅日期为‘2005-6-8’</span></span><br><span class="line"><span class="keyword">update</span> borrow <span class="keyword">set</span> borrowdate<span class="operator">=</span><span class="string">&#x27;2005-6-8&#x27;</span></span><br><span class="line"><span class="keyword">where</span> Reader_ID <span class="keyword">in</span>(</span><br><span class="line"><span class="keyword">select</span> Reader_ID <span class="keyword">from</span> reader <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;胡晓丽&#x27;</span>) <span class="keyword">and</span> book_ID <span class="keyword">in</span>(</span><br><span class="line"><span class="keyword">select</span> book_ID <span class="keyword">from</span> book <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;高等数学&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">update</span> borrow <span class="keyword">set</span> borrowdate <span class="operator">=</span><span class="string">&#x27;2005-6-8&#x27;</span></span><br><span class="line"><span class="keyword">from</span> borrow <span class="keyword">join</span> reader <span class="keyword">on</span> borrow.Reader_ID<span class="operator">=</span>Reader.Reader_ID</span><br><span class="line"><span class="keyword">join</span> book <span class="keyword">on</span> book.author <span class="operator">=</span> borrow.book_ID <span class="keyword">where</span></span><br><span class="line">reader.name<span class="operator">=</span><span class="string">&#x27;胡晓丽&#x27;</span> <span class="keyword">and</span> book.name<span class="operator">=</span><span class="string">&#x27;高等数学&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--删除数据</span></span><br><span class="line"><span class="comment">--子查询方式实现</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> borrow <span class="keyword">where</span> Borrowdate<span class="operator">=</span><span class="string">&#x27;2005-6-7&#x27;</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> borrow <span class="keyword">where</span> Reader_ID<span class="operator">=</span>(</span><br><span class="line"><span class="keyword">select</span> Reader_ID <span class="keyword">from</span> reader <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;王旭&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">--多表连接的方式实现</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> borrow <span class="keyword">from</span> borrow <span class="keyword">join</span> reader <span class="keyword">on</span>  borrow.Reader_ID<span class="operator">=</span>reader.Reader_ID <span class="keyword">where</span></span><br><span class="line">reader.Reader_ID<span class="operator">=</span><span class="string">&#x27;王旭&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--删除‘C语言’的借阅记录</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> borrow <span class="keyword">where</span> book_ID<span class="operator">=</span>(</span><br><span class="line"><span class="keyword">select</span> book_ID <span class="keyword">from</span> book <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;C语言&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">--删除‘胡晓丽’借阅‘高等数学’的借阅记录</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> borrow <span class="keyword">where</span> Reader_ID<span class="operator">=</span>(</span><br><span class="line"><span class="keyword">select</span> Reader_ID <span class="keyword">from</span> reader <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;胡晓丽&#x27;</span>)<span class="keyword">and</span> book_ID<span class="operator">=</span>(</span><br><span class="line"><span class="keyword">select</span> book_ID <span class="keyword">from</span> book <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;高等数学&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading -->
+<h2 id="视图与索引"><a href="#视图与索引" class="headerlink" title="视图与索引"></a>视图与索引</h2><!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="定义视图"><a href="#定义视图" class="headerlink" title="定义视图"></a>定义视图</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>用CREATE TABLE语句创建的表叫基本表。</li><li>视图是从一个或多个基本表或视图中导出的表，视图的结构和数据都是建立在对基本表的查询基础上的。</li><li>视图不是真实存在的表，而是一个虚拟表，数据库中只存储视图的定义，而没有储存视图对应的数据，视图中的数据是从基本表中选取出来的，这些数据并不实际的按视图结构存储在数据库中，而是储在原来的基本表中。</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h3><!-- /wp:heading -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> <span class="operator">&lt;</span>视图名<span class="operator">&gt;</span> [(视图列名表)]</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">  <span class="keyword">SELECT</span> 查询子句</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">CHECK</span> OPTION]</span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading {"level":3} -->
+<h3 id="创建视图注意事项"><a href="#创建视图注意事项" class="headerlink" title="创建视图注意事项"></a>创建视图注意事项</h3><!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true,"textColor":"black","fontSize":"medium"} -->
+<ol class="has-black-color has-text-color has-medium-font-size"><li>视图名必须遵循标识符命名规则，且对每类用户视图名必须是唯一的，即对不同用户定义相同的视图，也必须使用不同的名字。</li><li>SELECT查询子句的查询内容就是视图的内容。SELECT语句通常不允许含有ORDER BY子句和DISTINCT子句。</li><li><span class="has-inline-color has-black-color">SELECT语句中查询的表和视图即新创建的视图所参照的表和视图</span>。</li><li>视图列名列表是视图中所包含的列。若使用与基本表中相同的列名，则可以省略。若指定列名列表，则需全部指定，不能只给出一部分。以下情况要求必须指定视图的全部列名：①由算术表达式、系统内置函数或者常量得到的列；②多表连接查询时选出的同名列；③希望视图中的列名与基表中的列名不同的时候。</li><li>WITH CHECK OPTION子句表示在视图上执行UPDATE，INSERT或DELETE操作时要保证所修改的行满足视图定义中的谓词条件（即SELECT查询子句中的限定条件，如Where条件），这样可以确保数据修改后，仍可通过视图看到修改的数据。</li></ol>
+<!-- /wp:list -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> ReaderInfo(ID,Name,Age)</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> reader_id,name,<span class="keyword">YEAR</span>(GETDATE())<span class="operator">-</span></span><br><span class="line"><span class="keyword">YEAR</span>(birthdate)</span><br><span class="line"><span class="keyword">FROM</span> Reader</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> PerPublish_AVG(Publish,</span><br><span class="line">AVG_Price)</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">	<span class="keyword">SELECT</span> publish,<span class="built_in">AVG</span>(price)</span><br><span class="line">	<span class="keyword">FROM</span> Book</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> publish</span><br><span class="line"><span class="comment">--创建计算机系的所有学生信息视图ComputerStu，并要求对该视图的修改满足计算机系这个条件。</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> ComputerStu</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">	<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Student</span><br><span class="line">	<span class="keyword">WHERE</span> sdept<span class="operator">=</span><span class="string">&#x27;计算机系&#x27;</span></span><br><span class="line">	<span class="keyword">with</span> <span class="keyword">check</span> option</span><br><span class="line"></span><br><span class="line"><span class="comment">--创建计算机系学生选修课程情况的视图ComputerSC，要求显示所有学生的学号、姓名、选修的课程号、课程名以及成绩。</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> ComputerSC (学号,姓名,课程号,课程名,成绩)</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">	<span class="keyword">SELECT</span> student.sno,student.sname,SC.con,course.cname,Sc.grade</span><br><span class="line">	<span class="keyword">FROM</span> student <span class="keyword">join</span> Sc <span class="keyword">on</span> student.sno<span class="operator">=</span>Sc.sno <span class="keyword">join</span> Course <span class="keyword">on</span> Course.cno<span class="operator">=</span>SC.con</span><br><span class="line">	<span class="keyword">where</span> sdept<span class="operator">=</span><span class="string">&#x27;计算机系&#x27;</span></span><br><span class="line">	<span class="keyword">with</span> <span class="keyword">check</span> option</span><br><span class="line"></span><br><span class="line"><span class="comment">--基于computerSC视图，创建计算机系刘晨选修课程的视图LCView，显示其选修课程号、课程名和成绩。</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> LCView</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">	<span class="keyword">SELECT</span> 课程号,课程名,成绩 <span class="keyword">FROM</span> ComputerSC</span><br><span class="line"></span><br><span class="line"><span class="comment">--创建每个系学生人数的视图DeptCount，显示系名和人数。</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> DeptCount(系名,人数)</span><br><span class="line"><span class="keyword">AS</span> </span><br><span class="line">	<span class="keyword">SELECT</span> sdept,<span class="built_in">count</span>(sdept) <span class="keyword">FROM</span> Student </span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">by</span> sdept</span><br><span class="line"></span><br><span class="line"><span class="comment">--创建平均成绩高于60的学生学生视图PassedStu，显示学生的学号、姓名和平均成绩。</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> PassedStu(学号,名字,平均成绩)</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">	<span class="keyword">SELECT</span> Student.sno,sname,<span class="built_in">AVG</span>(grade) <span class="keyword">from</span> Student</span><br><span class="line">	<span class="keyword">join</span> SC <span class="keyword">on</span> Student.sno<span class="operator">=</span>Sc.sno <span class="keyword">group</span> <span class="keyword">by</span> Student.sno,sname <span class="keyword">having</span> <span class="built_in">AVG</span>(grade) <span class="operator">&gt;</span> <span class="number">60</span> </span><br><span class="line">	<span class="keyword">with</span> <span class="keyword">check</span> option</span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading {"level":3} -->
+<h3 id="修改视图"><a href="#修改视图" class="headerlink" title="修改视图"></a>修改视图</h3><!-- /wp:heading -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--ALTER VIEW 视图名[(列名[,…n])]</span></span><br><span class="line"><span class="comment">--       AS SELECT查询语句</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--修改视图BookView1, 其中包含书价高于40元的图书信息。 </span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">VIEW</span>  BookView1(ID,Name,Author,Publish,Price)</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">     <span class="keyword">SELECT</span>  book_id,name,author,publish,price</span><br><span class="line">     <span class="keyword">FROM</span>  Book </span><br><span class="line">     <span class="keyword">WHERE</span> price<span class="operator">&gt;</span><span class="number">40</span></span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading {"level":3} -->
+<h3 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>格式：DROP VIEW <视图名></li><li>删除视图时注意：按照参照的逆序删除。如WXBorrow视图是基于R_B_Borrow创建的，因此删除的顺序应该是WXBorrow、R_B_Borrow</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 id="索引的概念"><a href="#索引的概念" class="headerlink" title="索引的概念"></a>索引的概念</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>索引是一种特殊的查询表，可以被数据库搜索引擎用来加速数据的检索。简单说来，索引就是指向表中数据的指针。数据库的索引同书籍后面的索引非常相像。</li><li>例如，如果想要查阅一本书中与某个特定主题相关的所有页面，你会先去查询索引（索引按照字母表顺序列出了所有主题），然后从索引中找到一页或者多页与该主题相关的页面。</li><li>索引能够提高 SELECT 查询和 WHERE 子句的速度，但是却降低了包含 UPDATE 语句或 INSERT 语句的数据输入过程的速度。索引的创建与删除不会对表中的数据产生影响。</li><li>创建索引需要使用 CREATE INDEX 语句，该语句允许对索引命名，指定要创建索引的表以及对哪些列进行索引，还可以指定索引按照升序或者降序排列。</li><li>同 UNIQUE 约束一样，索引可以是唯一的。这种情况下，索引会阻止列中（或者列的组合，其中某些列有索引）出现重复的条目。</li><li>创建索引语法格式：</li></ul>
+<!-- /wp:list -->
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">UNIQUE</span>] [CLUSTERED] INDEX 索引名</span><br><span class="line"><span class="keyword">ON</span> 表名<span class="operator">|</span>视图名 (列名 [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>]  [,…n])</span><br><span class="line">其中：</span><br><span class="line">①<span class="keyword">UNIQUE</span>：创建的索引是唯一索引。</span><br><span class="line">②CLUSTERED：指明创建的索引为聚集索引。</span><br><span class="line">③索引名：指定所创建的索引的名称。</span><br><span class="line">④表名<span class="operator">|</span>视图名：指定在哪张表或哪个视图上创建索引。</span><br><span class="line">⑤列名：指定被索引的列。</span><br><span class="line">⑥<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>：指定特定索引列的排序方式。默认值是升序<span class="keyword">ASC</span>。 </span><br><span class="line"><span class="operator">&lt;</span><span class="operator">/</span>code<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">/</span>pre<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--为读者表[读者姓名]列创建索引IDX_NAME。</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX IDX_NAME <span class="keyword">ON</span> Reader (Name)</span><br><span class="line"><span class="comment">--为图书信息表中的图书编号一列创建聚集索引IDX_ID，并且强制唯一性。</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> CLUSTERED INDEX IDX_ID <span class="keyword">ON</span> Book(book_id)</span><br><span class="line"><span class="comment">--在图书表上创建复合索引IDX_Unite，首先在列Publish上创建降序索引，若Publish列值相同的图书再按照Book_id列创建升序索引。</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX Unite <span class="keyword">ON</span> Book (publish <span class="keyword">DESC</span>, book_id <span class="keyword">ASC</span>)</span><br></pre></td></tr></table></figure>
+
+<!-- wp:heading {"level":3} -->
+<h3 id="索引的创建与管理"><a href="#索引的创建与管理" class="headerlink" title="索引的创建与管理"></a>索引的创建与管理</h3><!-- /wp:heading -->
+
+<!-- wp:list {"fontSize":"medium"} -->
+<ul class="has-medium-font-size"><li>在SQL Server中，可以在查询分析器中使用存储sp_helpindex检查索引创建情况。</li><li>使用SQL语句的DROP INDEX，可以从当前数据库中删除一个或多个索引，语法格式：DROP INDEX 表名.索引名|视图.索引名 [ ,...n ]</li></ul>
+<!-- /wp:list --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">ldh0-0</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://ldh0-0.github.io/2021/12/19/sql%20sever%E7%AC%94%E8%AE%B0/">http://ldh0-0.github.io/2021/12/19/sql%20sever%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://ldh0-0.github.io" target="_blank">ldh0-0</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/sql/">sql</a></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2022/06/05/629c65942cd1c.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/12/24/c-%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://bu.dusays.com/2022/05/29/62939662553c9.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">c++核心编程</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/08/Misc%E6%80%BB%E7%BB%93/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://bu.dusays.com/2022/06/05/629c65942cd1c.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Misc总结</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/ldh0-0/picgodemo/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ldh0-0</div><div class="author-info__description">ldh0-0的博客，欢迎访问</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ldh0-0" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2869570576@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到ldh0-0的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">SQL 数据定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">SQL概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">SQL的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80"><span class="toc-number">1.3.</span> <span class="toc-text">数据定义语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.</span> <span class="toc-text">删除数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">SQL 中的数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.7.</span> <span class="toc-text">数据完整性约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E7%A0%81%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.8.</span> <span class="toc-text">外码约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-number">1.9.</span> <span class="toc-text">删除表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%9A%84%E5%88%97"><span class="toc-number">1.10.</span> <span class="toc-text">修改表的列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%9A%84%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.11.</span> <span class="toc-text">修改表的约束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.</span> <span class="toc-text">数据查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.1.</span> <span class="toc-text">简单查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E9%9B%86%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">聚集函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%BA%94%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">格式应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.</span> <span class="toc-text">多表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.1.</span> <span class="toc-text">嵌套子查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.2.</span> <span class="toc-text">多表连接查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.3.</span> <span class="toc-text">表连接的语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.4.</span> <span class="toc-text">表外连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.5.</span> <span class="toc-text">左外连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%B3%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.6.</span> <span class="toc-text">右外连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.7.</span> <span class="toc-text">全外连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.8.</span> <span class="toc-text">复杂查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E7%BA%B5"><span class="toc-number">4.</span> <span class="toc-text">数据操纵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">4.1.</span> <span class="toc-text">插入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="toc-number">4.2.</span> <span class="toc-text">修改数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-number">4.3.</span> <span class="toc-text">删除数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%BA%94%E7%94%A8-1"><span class="toc-number">4.4.</span> <span class="toc-text">格式应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%B4%A2%E5%BC%95"><span class="toc-number">5.</span> <span class="toc-text">视图与索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E8%A7%86%E5%9B%BE"><span class="toc-number">5.1.</span> <span class="toc-text">定义视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE"><span class="toc-number">5.2.</span> <span class="toc-text">创建视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">5.3.</span> <span class="toc-text">创建视图注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A7%86%E5%9B%BE"><span class="toc-number">5.4.</span> <span class="toc-text">修改视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A7%86%E5%9B%BE"><span class="toc-number">5.5.</span> <span class="toc-text">删除视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">5.6.</span> <span class="toc-text">索引的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E7%AE%A1%E7%90%86"><span class="toc-number">5.7.</span> <span class="toc-text">索引的创建与管理</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/03/05/whatweb/" title="whatweb"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://bu.dusays.com/2022/05/26/628fa0426213d.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="whatweb"/></a><div class="content"><a class="title" href="/2023/03/05/whatweb/" title="whatweb">whatweb</a><time datetime="2023-03-05T14:23:05.000Z" title="发表于 2023-03-05 22:23:05">2023-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/27/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" title="python自动化运维"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://bu.dusays.com/2022/06/05/629c5257753d1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python自动化运维"/></a><div class="content"><a class="title" href="/2023/02/27/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" title="python自动化运维">python自动化运维</a><time datetime="2023-02-27T02:27:25.000Z" title="发表于 2023-02-27 10:27:25">2023-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/04/Vue%E7%AC%94%E8%AE%B0/" title="Vue笔记"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://bu.dusays.com/2022/08/07/62efd592df749.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue笔记"/></a><div class="content"><a class="title" href="/2022/11/04/Vue%E7%AC%94%E8%AE%B0/" title="Vue笔记">Vue笔记</a><time datetime="2022-11-04T00:39:34.000Z" title="发表于 2022-11-04 08:39:34">2022-11-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/25/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" title="字符串处理"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://bu.dusays.com/2022/06/05/629c65942cd1c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="字符串处理"/></a><div class="content"><a class="title" href="/2022/03/25/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" title="字符串处理">字符串处理</a><time datetime="2022-03-25T03:32:33.000Z" title="发表于 2022-03-25 11:32:33">2022-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/11/CMD%E5%91%BD%E4%BB%A4/" title="CMD命令"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://bu.dusays.com/2022/06/05/629c65942cd1c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CMD命令"/></a><div class="content"><a class="title" href="/2022/03/11/CMD%E5%91%BD%E4%BB%A4/" title="CMD命令">CMD命令</a><time datetime="2022-03-11T01:26:35.000Z" title="发表于 2022-03-11 09:26:35">2022-03-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://bu.dusays.com/2022/06/05/629c65942cd1c.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By ldh0-0</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
