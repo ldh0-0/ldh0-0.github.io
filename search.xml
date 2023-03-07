@@ -4,40 +4,6 @@
   
     
     <entry>
-      <title>web 常用工具</title>
-      <link href="/2023/03/05/whatweb/"/>
-      <url>/2023/03/05/whatweb/</url>
-      
-        <content type="html"><![CDATA[<h2 id="whatweb简介"><a href="#whatweb简介" class="headerlink" title="whatweb简介"></a>whatweb简介</h2><blockquote><p>whatweb 是kali中网站指纹识别的工具，使用Ruby语言开发。whatweb可识别web技术，包括内容管理系统(CMS)、博客平台、统计/分析包、JavaScript库，Web服务器和嵌入式设备等。它有超过900个插件，每个插件都能识别不同的东西。Whatweb还可以识别版本号，电子邮件地址、账户ID、Web框架模块，SQL错误等。</p></blockquote><p>用法： <strong>weatweb 域名</strong></p><ul><li>i 指定要扫描的文件</li><li>v 详细显示扫描的结果</li><li>a 指定运行级别</li></ul><h3 id="批量扫描"><a href="#批量扫描" class="headerlink" title="批量扫描"></a>批量扫描</h3><p>使用命令：指定遍历的文件路径，文件中填写需要扫描的域名。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whatweb -i [文件路径]</span><br></pre></td></tr></table></figure><h3 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h3><p>使用命令：-aggression参数简写-a,后面可以跟1-4个等级（默认为1）</p><ol><li>stealthy 每个目标发送一次http请求，并且会跟随重定向</li><li>unused 不可用</li><li>aggressive 每个目标发送少量的http请求，这些请求时根据参数为1时结果确定的</li><li>heavy 每个目标会发送大量的http请求，会去尝试每一个插件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whatweb -a 等级 域名</span><br></pre></td></tr></table></figure></li></ol><h3 id="快速扫描本地主机"><a href="#快速扫描本地主机" class="headerlink" title="快速扫描本地主机"></a>快速扫描本地主机</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">whatweb --no-errors -t 255 内网网段</span><br><span class="line">可以和-a 和 -v 结合使用</span><br></pre></td></tr></table></figure><h2 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h2>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 工具 </tag>
-            
-            <tag> web </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>python自动化运维</title>
-      <link href="/2023/02/27/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-      <url>/2023/02/27/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/</url>
-      
-        <content type="html"><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><blockquote><p>调用内置函数Type可以获取数据的数据类型</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="number">18</span>)) <span class="comment">#&lt;class &#x27;int&#x27;&gt;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="number">5.6</span>)) <span class="comment">#&lt;class &#x27;float&#x27;&gt;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="string">&#x27;hello&#x27;</span>)) <span class="comment">#&lt;class &#x27;str&#x27;&gt;</span></span><br></pre></td></tr></table></figure><h3 id="dd整数类型"><a href="#dd整数类型" class="headerlink" title="dd整数类型"></a>dd整数类型</h3><ol><li>整数的不同进制表示方式<br>整数有4种进制表示方式：<br>（1）10进制：默认的进制<br>（2）2进制：以0b开头<br>（3）8进制：以0o开头<br>（4）16进制：以0x开头<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">118</span>) <span class="comment"># 118</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">0b1110110</span>) <span class="comment"># 118</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">0o166</span>) <span class="comment"># 118</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">0x76</span>) <span class="comment"># 118</span></span><br></pre></td></tr></table></figure></li><li>整数转换成不同禁止的字符串<br>可以调用内置函数将十进制整数转换成不同进制的字符串；<ol><li>bin():将十进制整数转换为2进制（binary）字符串；</li><li>oct():将十进制整数转换为8进制（octal）字符串；</li><li>hex():将十进制整数转换为16进制（hexadecimal）字符串；</li></ol></li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="built_in">bin</span>(<span class="number">118</span>))) <span class="comment"># 输出为&lt;class &#x27;str&#x27;&gt;这里需要注意的是转换之后不是整数，而是字符串</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">bin</span>(<span class="number">118</span>)) <span class="comment"># 0b1110110</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">oct</span>(<span class="number">118</span>)) <span class="comment"># 0o166</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>(<span class="number">118</span>)) <span class="comment"># 0x76</span></span><br></pre></td></tr></table></figure><ol start="3"><li>整数的创建<br>除了直接创建一个整数，还可以调用内置函数int创建整数；<ol><li>不传递任何参数时， 返回函数0</li><li>只传递一个参数时，将传递的参数转换成整数</li><li>传递两个参数时，递给参数必须是字符串(字符串用单引号)，第二个参数指定； </li></ol></li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>()) <span class="comment"># 0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(<span class="number">118</span>)) <span class="comment"># 118</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(<span class="number">118.2</span>)) <span class="comment"># 118</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(<span class="string">&#x27;118&#x27;</span>)) <span class="comment"># 118</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(<span class="string">&#x27;0b1110110&#x27;</span>,<span class="number">2</span>)) <span class="comment">#118、</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(<span class="string">&#x27;0o166&#x27;</span>,<span class="number">8</span>)) <span class="comment">#118</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(<span class="string">&#x27;0x76&#x27;</span>,<span class="number">16</span>)) <span class="comment">#118</span></span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Vue笔记</title>
       <link href="/2022/11/04/Vue%E7%AC%94%E8%AE%B0/"/>
       <url>/2022/11/04/Vue%E7%AC%94%E8%AE%B0/</url>
@@ -64,25 +30,6 @@
         <content type="html"><![CDATA[<h1 id="getline"><a href="#getline" class="headerlink" title="getline()"></a>getline()</h1><p>函数原型：</p><blockquote><p>istream&amp; getline (istream &amp;is, string &amp;str, char delim);</p></blockquote><ul><li>istream &amp;is 表示一个输入流,如cin</li><li>string &amp;str 要进行输入的字符串变量</li><li>chr delim 表示遇到这个字符就停止读入，默认不写是遇到回车(‘\n’)停止读入</li></ul><h1 id="getchar"><a href="#getchar" class="headerlink" title="getchar()"></a>getchar()</h1><blockquote><p>可以从缓冲区中读走一个字符</p></blockquote><h1 id="sizeof的使用方法"><a href="#sizeof的使用方法" class="headerlink" title="sizeof的使用方法"></a>sizeof的使用方法</h1><ol><li>用于数据类型</li></ol><p>sizeof使用形式：sizeof(type);  注：数据类型必须用括号括住。如sizeof（int）。</p><ol start="2"><li>用于变量</li></ol><p>sizeof使用形式：sizeof（var_name）或sizeof var_name</p>]]></content>
       
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>CMD命令</title>
-      <link href="/2022/03/11/CMD%E5%91%BD%E4%BB%A4/"/>
-      <url>/2022/03/11/CMD%E5%91%BD%E4%BB%A4/</url>
-      
-        <content type="html"><![CDATA[<p>tservices.msc(服务管理窗口)<br>gpedit.msc(）<br>enterprise企业<br>professional专业<br>server服务器<br>client客户端<br>Gateway网关<br>ping -l 数字 IP地址<br>修改ping包的大小<br>ipconfig 查看IP地址基本信息<br>ipconfig /all            详细<br>操作文件夹：</p><p>dir 列出当前控制台所在路径下的所以文件以及文件夹<br>cd路径 进入指定路径下<br>cd .. 回退到上一级目录上<br>cd\ 回退到当前路径下的根目录<br>md 文件夹的名字  创建一个文件夹<br>rd 文件夹的名字   删除一个空文件夹 ，注意不能用于删除非空的文件夹</p><p>操作文件：</p><p>echo 数据&gt;文件名    创建一个文件并且指定写入的数据<br>copy con 文件名<br>开始编写内容<br>ctrl+z回车结束</p><p>type 文件名    查看指定的文件内容<br>type 文件名| more 分页显示<br>del 文件名     删除指定的文件 注意 del后面如果跟一个文件夹，那么是删除一个文件夹中的所以文件<br>* 通配符（可以匹配任意的文件名）<br>tab   内容补全<br>cls  清屏<br>上下方向键     找回上一次所写过的命令<br>exit  关闭控制台</p><p>快速生成一个空文件<br>fsutil file createnew c：<br>\windows\ system.ini 空间</p><p>修改关联<br>assoc.txt=exefile</p><p>定时关机或重启<br>shutdown -s -f -t 秒 -c “”<br>-s关机 -t秒数 -f强制 -r重启 -a取消定时 -l</p><p>ren 旧名 新名</p><p>1、重定向符号</p><p>1&gt;正确输出<br>2&gt;错误输出</p><p>&gt;&gt;为追加<br>&gt;为覆盖</p><p>nul为空<br>&gt;nul  将正确输出扔掉</p><p>修改文件或文件夹隐藏属性<br>attrib   h   文件全名/文件夹名<br>attrib   +s +h  文件   升级为被系统保护的文件<br>+改为  -取消</p><p>批处理基本语法：</p><ol><li><p>@echo off<br>作用：关闭回显功能，也就是屏蔽过程，建议放置在批处理的首行</p></li><li><p>pause<br>作业：暂停批处理运行</p></li><li><p>title<br>作业：为批处理脚本设置标题</p></li><li><p>echo.<br>作用：在执行批处理脚本时，可以空一行</p></li><li><p>set<br>作用：设置变量，常用与在脚本中的互动赋值<br>互动赋值 ：set /p time=请输入时间：<br>引用变量：%time%</p></li><li><p>：和goto<br>：定义标签名<br>goto实现跳转</p></li><li><p>start<br>后跟要打开的东西 ，如果不写默认打开cmd</p></li></ol><p>用户管理：<br>用户SID<br>系统SID<br>用户UID：500<br>windows系统管理员administrator的UID是500<br>普通用户的UID是1000开始</p><p>用户管理命令<br>net user #查看用户列表<br>net user 用户名 密码 #改密码<br>net user 用户名 密码 /add #创建一个新用户<br>net user 用户名 /del #删除一用户<br>net user 用户名 /active:yes/no #激活或禁用账户</p><p>管理组命令<br>net localgroup<br>net localgroup 组名<br>net localgroup 组名 /add<br>                    /del<br>net localgroup 组名 用户名 /add<br>                         /del</p><p>netstat -an<br>查看本机开放的所有端口<br>telnet: 23<br>远程桌面协议RDP: 3389<br>mstsc<br>远程桌面连接</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> windows </tag>
-            
-        </tags>
       
     </entry>
     
