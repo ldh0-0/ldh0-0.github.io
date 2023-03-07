@@ -4,13 +4,21 @@
   
     
     <entry>
-      <title>whatweb</title>
+      <title>web 常用工具</title>
       <link href="/2023/03/05/whatweb/"/>
       <url>/2023/03/05/whatweb/</url>
       
-        <content type="html"><![CDATA[<h2 id="whatweb简介"><a href="#whatweb简介" class="headerlink" title="whatweb简介"></a>whatweb简介</h2><blockquote><p>whatweb 是kali中网站指纹识别的工具，使用Ruby语言开发。whatweb可识别web技术，包括内容管理系统(CMS)、博客平台、统计/分析包、JavaScript库，Web服务器和嵌入式设备等。它有超过900个插件，每个插件都能识别不同的东西。Whatweb还可以识别版本号，电子邮件地址、账户ID、Web框架模块，SQL错误等。</p></blockquote><p>用法： <strong>weatweb 域名</strong></p><ul><li>i 指定要扫描的文件</li><li>v 详细显示扫描的结果</li><li>a 指定运行级别</li></ul><p><a href="">imag</a></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="whatweb简介"><a href="#whatweb简介" class="headerlink" title="whatweb简介"></a>whatweb简介</h2><blockquote><p>whatweb 是kali中网站指纹识别的工具，使用Ruby语言开发。whatweb可识别web技术，包括内容管理系统(CMS)、博客平台、统计/分析包、JavaScript库，Web服务器和嵌入式设备等。它有超过900个插件，每个插件都能识别不同的东西。Whatweb还可以识别版本号，电子邮件地址、账户ID、Web框架模块，SQL错误等。</p></blockquote><p>用法： <strong>weatweb 域名</strong></p><ul><li>i 指定要扫描的文件</li><li>v 详细显示扫描的结果</li><li>a 指定运行级别</li></ul><h3 id="批量扫描"><a href="#批量扫描" class="headerlink" title="批量扫描"></a>批量扫描</h3><p>使用命令：指定遍历的文件路径，文件中填写需要扫描的域名。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whatweb -i [文件路径]</span><br></pre></td></tr></table></figure><h3 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h3><p>使用命令：-aggression参数简写-a,后面可以跟1-4个等级（默认为1）</p><ol><li>stealthy 每个目标发送一次http请求，并且会跟随重定向</li><li>unused 不可用</li><li>aggressive 每个目标发送少量的http请求，这些请求时根据参数为1时结果确定的</li><li>heavy 每个目标会发送大量的http请求，会去尝试每一个插件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whatweb -a 等级 域名</span><br></pre></td></tr></table></figure></li></ol><h3 id="快速扫描本地主机"><a href="#快速扫描本地主机" class="headerlink" title="快速扫描本地主机"></a>快速扫描本地主机</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">whatweb --no-errors -t 255 内网网段</span><br><span class="line">可以和-a 和 -v 结合使用</span><br></pre></td></tr></table></figure><h2 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h2>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> web </tag>
+            
+        </tags>
       
     </entry>
     
